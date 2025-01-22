@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Structure using Canvas</title>
+</head>
+<body>
+    <h2>Using Canvas</h2>
+    <canvas id="canvas" width="400" height="400"></canvas>
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+
+        ctx.strokeStyle = "blue"; 
+        ctx.lineWidth = 1; 
+
+        function drawEllipse(x, y, radiusX, radiusY, rotation) {
+            ctx.beginPath();
+            ctx.ellipse(x, y, radiusX, radiusY, rotation, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        const centerX = 200; 
+        const centerY = 200;
+        const radiusX = 100; 
+        const radiusY = 35;  
+
+        // Draw the first ellipse
+        drawEllipse(centerX, centerY, radiusX, radiusY, 0);
+
+        // Use transformations for the other ellipses
+        for (let angle = 60; angle <= 120; angle += 60) {
+            drawEllipse(centerX, centerY, radiusX, radiusY, (angle * Math.PI) / 180);
+        }
+    </script>
+</body>
+</html>

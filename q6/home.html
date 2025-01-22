@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <script>
+        function redirect(){
+            location.href = "logout.html"
+        }
+
+        let id = 0;
+        function resetIdleTime(){
+            clearInterval(id);
+            id = setInterval("redirect()", 10000);
+        }
+
+        window.onload = function(){
+            resetIdleTime();
+
+            document.body.addEventListener("mousemove", resetIdleTime());
+            document.body.addEventListener("keypress", resetIdleTime());
+            document.body.addEventListener("scroll", resetIdleTime());
+        }
+    </script>
+
+    <h1>Home Page. Stay inactive for 10 seconds to redirect</h1>
+</body>
+</html>

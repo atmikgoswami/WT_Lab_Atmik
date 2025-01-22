@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE question-paper SYSTEM "questions.dtd">
+<question-paper>
+    <question no="1">
+        <text>What is the capital of India?</text>
+        <optionA>Delhi</optionA>
+        <optionB>Mumbai</optionB>
+        <optionC>Chennai</optionC>
+        <optionD>Kolkata</optionD>
+        <answer value="optionA">Delhi</answer>
+    </question>
+    <question no="2">
+        <text>Who wrote the national anthem of India?</text>
+        <optionA>Mahatma Gandhi</optionA>
+        <optionB>Rabindranath Tagore</optionB>
+        <optionC>Jawaharlal Nehru</optionC>
+        <optionD>Subhas Chandra Bose</optionD>
+        <answer value="optionB">Rabindranath Tagore</answer>
+    </question>
+</question-paper>

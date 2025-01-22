@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Payment</title>
+</head>
+<body>
+    <h1>Bill Payment Page</h1>
+    <form name="billPayment" id="billPayment">
+        <label for="paynow">Pay Now</label>
+        <input type="radio" name="pay" id="paynow" value="Pay Now">
+        <br>
+        <label for="paylater">Pay Later</label>
+        <input type="radio" name="pay" id="paylater" value="Pay Later">
+        <br><br>
+    </form>
+    <script>
+
+        let dateFieldAdded = false;
+
+        document.getElementById("paylater").addEventListener("click", function () {
+            if (!dateFieldAdded) {
+                dateFieldAdded = true;
+
+                const label = document.createElement("LABEL");
+                label.setAttribute("for", "date");
+                label.setAttribute("id", "dateLabel");
+                label.innerHTML = "Select Date: ";
+
+                const dateInput = document.createElement("INPUT");
+                dateInput.setAttribute("type", "date");
+                dateInput.setAttribute("id", "date");
+
+                document.getElementById("billPayment").appendChild(label);
+                document.getElementById("billPayment").appendChild(dateInput);
+            }
+        });
+
+        document.getElementById("paynow").addEventListener("click", function(){
+
+            dateFieldAdded = false;
+            var label = document.getElementById("dateLabel");
+            var t = document.getElementById("date");
+
+            document.getElementById("billPayment").removeChild(label);
+            document.getElementById("billPayment").removeChild(t);
+        });
+    </script>
+</body>
+</html>
