@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IndexedDB Example</title>
+</head>
+<body>
+  <h1>Computer Components</h1>
+  <button id="addBtn">Add</button>
+  <button id="showBtn">Show</button>
+  <button id="updateBtn">Update</button>
+  <button id="deleteBtn">Delete</button>
+  <ul id="componentList"></ul>
+
+  <!-- Dialog box for input -->
+  <div id="dialog" style="display:none;">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required><br><br>
+    <label for="manufacturer">Manufacturer:</label>
+    <input type="text" id="manufacturer" required><br><br>
+    <label for="price">Price:</label>
+    <input type="number" id="price" required><br><br>
+    <button id="saveBtn">Save</button>
+    <button id="closeBtn">Close</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

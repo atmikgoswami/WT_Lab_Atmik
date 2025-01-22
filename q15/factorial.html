@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial Table Generator</title>
+</head>
+<body>
+    <h1>Factorial Table Generator</h1>
+    <input type="number" id="numberInput" placeholder="Enter a number" min="1">
+    <button onclick="generateFactorialTable()">Generate Table</button>
+    <div id="output"></div>
+
+    <script>
+
+        if (window.Worker) {
+            const worker = new Worker('factorialWorker.js');
+
+            // Listen for messages from the worker
+            worker.onmessage = function (event) {
+                const tableData = event.data;
+                displayTable(tableData);
+            };
+
+            // Send the number to the worker to calculate the factorial table
+            function generateFactorialTable() {
+                const numberInput = document.getElementById('numberInput');
+                const number = parseInt(numberInput.value);
+
+                if (isNaN(number) || number < 1) {
+                    alert('Please enter a valid positive integer.');
+                    return;
+                }
+
+                worker.postMessage(number);
+            }
+
+            // Function to display the factorial table
+            function displayTable(data) {
+                const outputDiv = document.getElementById('output');
+                let table = '<table><tr><th>Number</th><th>Factorial</th></tr>';
+
+                data.forEach(row => {
+                    table += `<tr><td>${row.number}</td><td>${row.factorial}</td></tr>`;
+                });
+
+                table += '</table>';
+                outputDiv.innerHTML = table;
+            }
+        } else {
+            alert('Your browser does not support Web Workers.');
+        }
+    </script>
+</body>
+</html>
