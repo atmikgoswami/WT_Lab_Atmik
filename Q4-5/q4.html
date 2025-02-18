@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script>
+        function validateForm() {
+            const loginName = document.getElementById('loginName').value;
+            const password = document.getElementById('password').value;
+            const errorLabel = document.getElementById('errorLabel');
+            let errorMessage = '';
+
+            const loginNamePattern = /^[a-zA-Z0-9_]{1,10}$/;
+            const passwordPattern = /^(?=.*\d)(?=.*[A-Z]).{6,10}$/;
+
+            if (!loginNamePattern.test(loginName)) {
+                errorMessage += 'Login name can only have alphanumeric characters and underscore, and must not exceed 10 characters.<br>';
+            }
+
+            if (!passwordPattern.test(password)) {
+                errorMessage += 'Password must be 6 to 10 characters long, containing at least one digit and one uppercase letter.<br>';
+            }
+
+            if (errorMessage) {
+                errorLabel.innerHTML = errorMessage;
+                errorLabel.style.color = 'red';
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form action="/submit-login" method="post" onsubmit="return validateForm()">
+        <label for="loginName">Login Name:</label>
+        <input type="text" id="loginName" name="loginName" required><br><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <button type="submit">Submit</button>
+        <br><br>
+        <label id="errorLabel"></label>
+    </form>
+</body>
+</html>

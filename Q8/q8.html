@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Year and Semester Subjects</title>
+    <script>
+      const subjects = {
+        "1st": {
+          "1st": ["Math 101", "Physics 101", "Chemistry 101"],
+          "2nd": ["Math 102", "Physics 102", "Chemistry 102"],
+        },
+        "2nd": {
+          "1st": ["Math 201", "Physics 201", "Chemistry 201"],
+          "2nd": ["Math 202", "Physics 202", "Chemistry 202"],
+        },
+        "3rd": {
+          "1st": ["Math 301", "Physics 301", "Chemistry 301"],
+          "2nd": ["Math 302", "Physics 302", "Chemistry 302"],
+        },
+        "4th": {
+          "1st": ["Math 401", "Physics 401", "Chemistry 401"],
+          "2nd": ["Math 402", "Physics 402", "Chemistry 402"],
+        },
+      };
+
+      function updateSubjects() {
+        const year = document.getElementById("year").value;
+        const semester = document.getElementById("semester").value;
+        const subjectList = document.getElementById("subjectList");
+        const subjectsHeading = document.getElementById("subjectsHeading");
+        subjectList.innerHTML = "";
+
+        if (year && semester) {
+          const subjectsForSemester = subjects[year][semester];
+          subjectsForSemester.forEach((subject) => {
+            const li = document.createElement("li");
+            li.textContent = subject;
+            subjectList.appendChild(li);
+          });
+          subjectsHeading.style.display = "block";
+        } else {
+          subjectsHeading.style.display = "none";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form>
+      <label for="year">Year:</label>
+      <select id="year" name="year" onchange="updateSubjects()">
+        <option value="">Select Year</option>
+        <option value="1st">1st</option>
+        <option value="2nd">2nd</option>
+        <option value="3rd">3rd</option>
+        <option value="4th">4th</option></select
+      ><br /><br />
+
+      <label for="semester">Semester:</label>
+      <select id="semester" name="semester" onchange="updateSubjects()">
+        <option value="">Select Semester</option>
+        <option value="1st">1st</option>
+        <option value="2nd">2nd</option></select
+      ><br /><br />
+    </form>
+
+    <h3 id="subjectsHeading" style="display: none">Subjects:</h3>
+    <ul id="subjectList"></ul>
+  </body>
+</html>
