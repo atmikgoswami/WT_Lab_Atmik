@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open an Account</title>
+    <script>
+        function checkUsername() {
+            let username = document.getElementById("login_name").value;
+            let xhr = new XMLHttpRequest();
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    let response = xhr.responseText.trim();
+                    let status = document.getElementById("username_status");
+                    let submitBtn = document.getElementById("submitBtn");
+
+                    if (response === "taken") {
+                        status.innerHTML = "<span style='color:red;'>Username not available</span>";
+                        submitBtn.disabled = true;  // Disable the submit button
+                    } else {
+                        status.innerHTML = "<span style='color:green;'>Username available</span>";
+                        submitBtn.disabled = false; // Enable the submit button
+                    }
+                }
+            };
+
+            xhr.open("GET", "checkUserName.jsp?login_name=" + username, true);
+            xhr.send();
+        }
+    </script>
+</head>
+<body>
+    <h2>Open an Account</h2>
+    <form action="register.jsp" method="post">
+        <label>Login Name:</label>
+        <input type="text" id="login_name" name="login_name" onkeyup="checkUsername()" required>
+        <br>
+        <span id="username_status"></span>
+        <br><br>
+
+        <label>Password:</label>
+        <input type="password" name="password" required>
+        <br><br>
+
+        <label>Full Name:</label>
+        <input type="text" name="full_name" required>
+        <br><br>
+
+        <label>Email:</label>
+        <input type="email" name="email" required>
+        <br><br>
+
+        <input type="submit" id="submitBtn" value="Register">
+    </form>
+</body>
+</html>

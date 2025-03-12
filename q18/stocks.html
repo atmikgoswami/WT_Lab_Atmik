@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-time Stock Prices</title>
+</head>
+<body>
+    <h1>Real-time Stock Prices</h1>
+    <p>AAPL: <span id="aapl">Loading...</span></p>
+    <p>GOOG: <span id="goog">Loading...</span></p>
+
+    <script>
+        const eventSource = new EventSource("/WT_Lab_Atmik/q18/stocks");
+
+        eventSource.onmessage = function(event) {
+            const data = JSON.parse(event.data);
+            document.getElementById("aapl").innerText = "$" + data.AAPL;
+            document.getElementById("goog").innerText = "$" + data.GOOG;
+        };
+
+        eventSource.onerror = function() {
+            console.error("EventSource failed.");
+            eventSource.close();
+        };
+    </script>
+</body>
+</html>

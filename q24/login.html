@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+        function login() {
+            let username = document.getElementById("login_name").value;
+            let password = document.getElementById("password").value;
+            let messageDiv = document.getElementById("message");
+
+            if (username === "" || password === "") {
+                messageDiv.innerHTML = "<p style='color:red;'>Both fields are required!</p>";
+                return;
+            }
+
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    let response = xhr.responseText.trim();
+                    if (response === "success") {
+                        document.cookie = "username=" + username + "; path=/"; // Set cookie
+                        window.location.href = "welcome.html"; // Redirect
+                    } else {
+                        messageDiv.innerHTML = "<p style='color:red;'>" + response + "</p>";
+                    }
+                }
+            };
+            xhr.open("POST", "login.jsp", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.send("login_name=" + username + "&password=" + password);
+        }
+    </script>
+</head>
+<body>
+    <h2>Login</h2>
+    <label>Login Name:</label>
+    <input type="text" id="login_name" name="login_name"><br><br>
+
+    <label>Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+
+    <button type="button" onclick="login()">Login</button>
+
+    <div id="message"></div>
+</body>
+</html>

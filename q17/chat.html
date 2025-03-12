@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat WebSocket Client</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        input#chat {
+            width: 400px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        #console-container {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #ddd;
+            overflow-y: auto;
+            padding: 10px;
+        }
+
+        #console-container p {
+            margin: 5px 0;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <h2>Chat with WebSocket</h2>
+    <p>Type your message below and press enter to send:</p>
+    <input type="text" id="chat" placeholder="Type a message...">
+    
+    <div id="console-container">
+        <div id="console"></div>
+    </div>
+
+    <script>
+        var chatSocket = null;
+
+        // Create a WebSocket connection to the server
+        function connectToWebSocket() {
+            const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+            const host = window.location.hostname;
+            const port = window.location.port || (window.location.protocol === 'https:' ? 443 : 80); // Use default ports if empty
+            const socketUrl = `${protocol}://${host}:${port}/examples/websocket/chat`;
+
+            console.log('Connecting to WebSocket at:', socketUrl);
+            chatSocket = new WebSocket(socketUrl);
+
+            chatSocket.onopen = function () {
+                consoleLog('Connected to the WebSocket server.');
+            };
+
+            chatSocket.onclose = function () {
+                consoleLog('WebSocket connection closed.');
+            };
+
+            chatSocket.onerror = function (error) {
+                consoleLog('WebSocket error: ' + error);
+            };
+
+            chatSocket.onmessage = function (event) {
+                consoleLog('Received: ' + event.data);
+            };
+        }
+
+        // Function to log messages to the console area
+        function consoleLog(message) {
+            const consoleDiv = document.getElementById('console');
+            const p = document.createElement('p');
+            p.textContent = message;
+            consoleDiv.appendChild(p);
+            consoleDiv.scrollTop = consoleDiv.scrollHeight; // Scroll to the bottom
+        }
+
+        // Send a message through the WebSocket
+        function sendMessage() {
+            const message = document.getElementById('chat').value;
+            if (message !== '') {
+                chatSocket.send(message);
+                document.getElementById('chat').value = ''; // Clear input after sending
+                consoleLog('Sent: ' + message);
+            }
+        }
+
+        // Set up the WebSocket on page load
+        document.addEventListener('DOMContentLoaded', function () {
+            connectToWebSocket();
+
+            // Event listener for sending message when 'Enter' key is pressed
+            document.getElementById('chat').addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
