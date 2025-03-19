@@ -1,0 +1,18 @@
+<questions>
+    <question>
+        <text>What is the capital of India?</text>
+        <optionA>Kolkata</optionA>
+        <optionB>Mumbai</optionB>
+        <optionC>New Delhi</optionC>
+        <optionD>Bengaluru</optionD>
+        <answer>C</answer>
+    </question>
+    <question>
+        <text>What is 2 + 2?</text>
+        <optionA>3</optionA>
+        <optionB>4</optionB>
+        <optionC>5</optionC>
+        <optionD>6</optionD>
+        <answer>B</answer>
+    </question>
+</questions>

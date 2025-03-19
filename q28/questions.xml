@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="transform.xsl" ?>
+<questions>
+    <question>
+        <id>1</id>
+        <text>What is the capital of France?</text>
+        <answer>Paris</answer>
+    </question>
+    <question>
+        <id>2</id>
+        <text>What is the largest planet in our solar system?</text>
+        <answer>Jupiter</answer>
+    </question>
+    <question>
+        <id>3</id>
+        <text>What is the chemical symbol for water?</text>
+        <answer>H2O</answer>
+    </question>
+</questions>
