@@ -1,4 +1,20 @@
 <%@ page import="java.sql.*, java.util.*" %>
+<%
+    // Check if there are any submitted answers
+    boolean hasAnswers = false;
+    Enumeration<String> parameterNames = request.getParameterNames();
+    while (parameterNames.hasMoreElements()) {
+        hasAnswers = true;
+        break;
+    }
+
+    // Redirect to questions.jsp if accessed directly without form submission
+    if (!hasAnswers) {
+        response.sendRedirect("questions.jsp");
+        return;
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,13 +49,12 @@
                 String questionText = rs.getString("question_text");
                 String correctAnswer = rs.getString("answer"); 
                 String userAnswer = request.getParameter("question_" + rs.getRow());
+
                 if (userAnswer != null && userAnswer.equals(correctAnswer)) {
                     correctAnswersCount++;
                 }
-
                 totalQuestions++; 
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {

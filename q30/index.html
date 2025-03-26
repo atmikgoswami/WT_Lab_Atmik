@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Computer Components</title>
+</head>
+<body>
+    <h2>Select Computer Components</h2>
+    <form action="calculatePrice.jsp" method="POST">
+        <label for="hdd">HDD:</label>
+        <select name="hdd" id="hdd">
+            <option value="">Select HDD</option>
+            <option value="Barracuda 1TB">Seagate - Barracuda 1TB</option>
+            <option value="Blue 1TB">Western Digital - Blue 1TB</option>
+        </select>
+        <br><br>
+
+        <label for="motherboard">Motherboard:</label>
+        <select name="motherboard" id="motherboard">
+            <option value="">Select Motherboard</option>
+            <option value="PRIME B450M-A">ASUS - PRIME B450M-A</option>
+            <option value="B450M DS3H">Gigabyte - B450M DS3H</option>
+        </select>
+        <br><br>
+
+        <label for="processor">Processor:</label>
+        <select name="processor" id="processor">
+            <option value="">Select Processor</option>
+            <option value="Core i5-11400">Intel - Core i5-11400</option>
+            <option value="Ryzen 5 5600X">AMD - Ryzen 5 5600X</option>
+        </select>
+        <br><br>
+
+        <label for="ram">RAM:</label>
+        <select name="ram" id="ram">
+            <option value="">Select RAM</option>
+            <option value="Vengeance LPX 8GB">Corsair - Vengeance LPX 8GB</option>
+            <option value="Ripjaws 8GB">G.Skill - Ripjaws 8GB</option>
+        </select>
+        <br><br>
+
+        <label for="monitor">Monitor:</label>
+        <select name="monitor" id="monitor">
+            <option value="">Select Monitor</option>
+            <option value="P2419H">Dell - P2419H</option>
+            <option value="24MP88HV-S">LG - 24MP88HV-S</option>
+        </select>
+        <br><br>
+
+        <label for="cd_dvd">CD/DVD R/W:</label>
+        <select name="cd_dvd" id="cd_dvd">
+            <option value="">Select CD/DVD R/W</option>
+            <option value="GH24NSC0">LG - GH24NSC0</option>
+            <option value="DRW-24D5MT">ASUS - DRW-24D5MT</option>
+        </select>
+        <br><br>
+
+        <input type="submit" value="Calculate Price">
+    </form>
+</body>
+</html>
