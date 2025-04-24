@@ -17,16 +17,16 @@ public class StudentSearchServlet extends HttpServlet {
     // Load MySQL Driver Once
     static {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("MySQL Driver not found!", e);
         }
     }
 
     // Local Database Credentials
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/1104_local_db?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
-    private static final String DB_USER = "root"; // Change this to your local MySQL username
-    private static final String DB_PASSWORD = "root"; // Change this to your local MySQL password
+    private static final String DB_URL = "jdbc:mysql://172.16.4.234:3306/test";
+    private static final String DB_USER = "be22104"; 
+    private static final String DB_PASSWORD = "bChaVGIP"; 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String searchString = request.getParameter("searchString");
@@ -42,8 +42,8 @@ public class StudentSearchServlet extends HttpServlet {
                 System.out.println("✅ Connected to Database Successfully!");
 
                 // Query to find students by name
-                String query = "SELECT s.name, s.roll_no, d.dept_name FROM students s " +
-                               "JOIN departments d ON s.dept_id = d.dept_id WHERE s.name LIKE ?";
+                String query = "SELECT s.name, s.roll_no, d.dept_name FROM students_1104 s " +
+                               "JOIN departments_1104 d ON s.dept_id = d.dept_id WHERE s.name LIKE ?";
                 
                 try (PreparedStatement stmt = connection.prepareStatement(query)) {
                     stmt.setString(1, "%" + searchString + "%");
