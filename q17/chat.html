@@ -48,7 +48,7 @@
             const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
             const host = window.location.hostname;
             const port = window.location.port || (window.location.protocol === 'https:' ? 443 : 80); // Use default ports if empty
-            const socketUrl = `${protocol}://${host}:${port}/examples/websocket/chat`;
+            const socketUrl = `${protocol}://${host}:${port}/net/WT_Lab_Atmik/q17`;
 
             console.log('Connecting to WebSocket at:', socketUrl);
             chatSocket = new WebSocket(socketUrl);
