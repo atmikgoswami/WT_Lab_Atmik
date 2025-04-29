@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+    <style>
+        .error { color: red; }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            margin-bottom: 8px; 
+            width: 200px;
+        }
+        input[type="submit"] {
+            margin-top: 8px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Create Account</h2>
+    <form id="accountForm" action="create.jsp" method="POST">
+        <label>Login Name: <input type="text" name="login" id="login"></label><br>
+        <label>Password: <input type="password" name="password1" id="password1"></label><br>
+        <label>Re-type Password: <input type="password" name="password2" id="password2"></label><br>
+        <label>Email: <input type="email" name="email" id="email"></label><br>
+        <label>Full Name: <input type="text" name="name" id="name"></label><br>
+        <label>Contact No: <input type="text" name="contact" id="contact"></label><br>
+        <span id="error" class="error"></span><br>
+        <input type="submit" value="Create Account">
+    </form>
+
+    <script>
+        document.getElementById("accountForm").addEventListener("submit", function (e) {
+            let err = "";
+            const login = document.getElementById("login").value.trim();
+            const pwd1 = document.getElementById("password1").value;
+            const pwd2 = document.getElementById("password2").value;
+            const email = document.getElementById("email").value.trim();
+            const contact = document.getElementById("contact").value.trim();
+
+            const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,12}$/;
+
+            if (!login || !pwd1 || !pwd2 || !email || !contact) {
+                err = "All fields are required.";
+            } else if (pwd1 !== pwd2) {
+                err = "Passwords do not match.";
+            } else if (!passwordRegex.test(pwd1)) {
+                err = "Password must be 6-12 characters with at least 1 uppercase, 1 lowercase, 1 digit, and 1 special character.";
+            } else if (!/^\d{10}$/.test(contact)) {
+                err = "Contact must be a 10-digit number.";
+            }
+
+            if (err) {
+                e.preventDefault();
+                document.getElementById("error").textContent = err;
+            }
+        });
+    </script>
+</body>
+</html>
