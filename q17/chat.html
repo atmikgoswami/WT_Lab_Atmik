@@ -43,11 +43,10 @@
     <script>
         var chatSocket = null;
 
-        // Create a WebSocket connection to the server
         function connectToWebSocket() {
             const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
             const host = window.location.hostname;
-            const port = window.location.port || (window.location.protocol === 'https:' ? 443 : 80); // Use default ports if empty
+            const port = window.location.port; 
             const socketUrl = `${protocol}://${host}:${port}/net/WT_Lab_Atmik/q17`;
 
             console.log('Connecting to WebSocket at:', socketUrl);
@@ -70,30 +69,26 @@
             };
         }
 
-        // Function to log messages to the console area
         function consoleLog(message) {
             const consoleDiv = document.getElementById('console');
             const p = document.createElement('p');
             p.textContent = message;
             consoleDiv.appendChild(p);
-            consoleDiv.scrollTop = consoleDiv.scrollHeight; // Scroll to the bottom
+            consoleDiv.scrollTop = consoleDiv.scrollHeight; 
         }
 
-        // Send a message through the WebSocket
         function sendMessage() {
             const message = document.getElementById('chat').value;
             if (message !== '') {
                 chatSocket.send(message);
-                document.getElementById('chat').value = ''; // Clear input after sending
+                document.getElementById('chat').value = ''; 
                 consoleLog('Sent: ' + message);
             }
         }
 
-        // Set up the WebSocket on page load
         document.addEventListener('DOMContentLoaded', function () {
             connectToWebSocket();
 
-            // Event listener for sending message when 'Enter' key is pressed
             document.getElementById('chat').addEventListener('keydown', function (event) {
                 if (event.key === 'Enter') {
                     sendMessage();
