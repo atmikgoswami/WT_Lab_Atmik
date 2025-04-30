@@ -1,16 +1,16 @@
 <questions>
     <question>
-        <text>What is the capital of Bangladesh?</text>
+        <text>What is the capital of Pakistan?</text>
         <optionA>Kolkata</optionA>
-        <optionB>Dhaka</optionB>
-        <optionC>New Delhi</optionC>
+        <optionB>Lahore</optionB>
+        <optionC>Karachi</optionC>
         <optionD>Bengaluru</optionD>
         <answer>C</answer>
     </question>
     <question>
-        <text>What is 2 + 5?</text>
+        <text>What is 2 + 9?</text>
         <optionA>3</optionA>
-        <optionB>4</optionB>
+        <optionB>11</optionB>
         <optionC>7</optionC>
         <optionD>6</optionD>
         <answer>B</answer>

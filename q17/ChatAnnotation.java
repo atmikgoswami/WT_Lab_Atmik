@@ -37,7 +37,6 @@ public class ChatAnnotation {
         nickname = GUEST_PREFIX + connectionIds.getAndIncrement();
     }
 
-
     @OnOpen
     public void start(Session session) {
         this.session = session;
