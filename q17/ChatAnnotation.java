@@ -30,10 +30,6 @@ public class ChatAnnotation {
 
     private final String nickname;
     private Session session;
-    /*
-     * The queue of messages that may build up while another message is being sent. The thread that sends a message is
-     * responsible for clearing any queue that builds up while that message is being sent.
-     */
     private Queue<String> messageBacklog = new ArrayDeque<>();
     private boolean messageInProgress = false;
 
@@ -61,7 +57,6 @@ public class ChatAnnotation {
 
     @OnMessage
     public void incoming(String message) {
-        // Never trust the client
         String filteredMessage = String.format("%s: %s", nickname, HTMLFilter.filter(message.toString()));
         broadcast(filteredMessage);
     }
@@ -72,11 +67,6 @@ public class ChatAnnotation {
         log.error("Chat Error: " + t.toString(), t);
     }
 
-
-    /*
-     * synchronized blocks are limited to operations that are expected to be quick. More specifically, messages are not
-     * sent from within a synchronized block.
-     */
     private void sendMessage(String msg) throws IOException {
 
         synchronized (this) {
@@ -115,7 +105,6 @@ public class ChatAnnotation {
                     try {
                         client.session.close();
                     } catch (IOException e1) {
-                        // Ignore
                     }
                     String message = String.format("* %s %s", client.nickname, "has been disconnected.");
                     broadcast(message);
