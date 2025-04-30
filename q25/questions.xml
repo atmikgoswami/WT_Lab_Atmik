@@ -1,17 +1,17 @@
 <questions>
     <question>
-        <text>What is the capital of India?</text>
+        <text>What is the capital of Bangladesh?</text>
         <optionA>Kolkata</optionA>
-        <optionB>Mumbai</optionB>
+        <optionB>Dhaka</optionB>
         <optionC>New Delhi</optionC>
         <optionD>Bengaluru</optionD>
         <answer>C</answer>
     </question>
     <question>
-        <text>What is 2 + 2?</text>
+        <text>What is 2 + 5?</text>
         <optionA>3</optionA>
         <optionB>4</optionB>
-        <optionC>5</optionC>
+        <optionC>7</optionC>
         <optionD>6</optionD>
         <answer>B</answer>
     </question>

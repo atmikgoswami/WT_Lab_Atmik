@@ -1,8 +1,8 @@
 <%@ page import="java.sql.*, java.util.*" %>
 <%
-    String dbUrl = "jdbc:mysql://localhost:3306/1104_local_db";
-    String dbUsername = "root";
-    String dbPassword = "root";
+    String dbUrl = "jdbc:mysql://172.16.4.234:3306/test";
+    String dbUsername = "be22104";
+    String dbPassword = "bChaVGIP";
 
     Connection conn = null;
     PreparedStatement stmt = null;
@@ -22,7 +22,7 @@
 
         for (Map.Entry<String, String> entry : selectedComponents.entrySet()) {
             if (entry.getValue() != null && !entry.getValue().isEmpty()) {
-                String sql = "SELECT price FROM computer_components WHERE component_type = ? AND model = ?";
+                String sql = "SELECT price FROM computer_components_1104 WHERE component_type = ? AND model = ?";
                 stmt = conn.prepareStatement(sql);
                 stmt.setString(1, entry.getKey());
                 stmt.setString(2, entry.getValue());
@@ -67,7 +67,7 @@
         %>
     </ul>
     
-    <h2>Total Price: ₹<%= totalPrice %></h2>
+    <h2>Total Price: Rupees <%= totalPrice %></h2>
 
     <br>
     <a href="index.html">Go Back</a>

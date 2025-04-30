@@ -2,12 +2,10 @@
 <%@ page import="WT_Lab_Atmik.q25.XMLQuestionImporter" %>
 
 <%
-    // Check if the request method is POST (file upload)
     if ("POST".equalsIgnoreCase(request.getMethod())) {
         Part filePart = request.getPart("file"); 
         String fileName = filePart.getSubmittedFileName();
 
-        // Directory to store the uploaded file
         String uploadDir = application.getRealPath("/") + "uploads/";
 
         File uploadDirFile = new File(uploadDir);
@@ -15,7 +13,6 @@
             uploadDirFile.mkdirs();
         }
 
-        // Define the full path for the uploaded file
         String filePath = uploadDir + fileName;
 
         try (InputStream fileContent = filePart.getInputStream();
@@ -28,7 +25,7 @@
             }
             try {
                 XMLQuestionImporter importer = new XMLQuestionImporter(filePath);
-                importer.insert();  // Insert questions into the database
+                importer.insert();  
                 out.println("<h3>Questions have been successfully inserted into the database.</h3>");
             } catch (Exception e) {
                 e.printStackTrace();

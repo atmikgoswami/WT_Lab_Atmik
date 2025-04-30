@@ -8,10 +8,10 @@
     ResultSet rs = null;
 
     try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/1104_local_db", "root", "root");
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://172.16.4.234:3306/test", "be22104", "bChaVGIP");
 
-        String query = "SELECT * FROM accounts WHERE login_name=?";
+        String query = "SELECT * FROM accounts_1104 WHERE login_name=?";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, username);
         rs = stmt.executeQuery();
@@ -21,7 +21,7 @@
         } else {
             String dbPassword = rs.getString("password");
             if (dbPassword.equals(password)) {
-                out.print("success"); // Will be handled by AJAX
+                out.print("success"); 
             } else {
                 out.print("Incorrect password");
             }

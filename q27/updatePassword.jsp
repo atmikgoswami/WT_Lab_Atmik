@@ -15,14 +15,12 @@
             ResultSet rs = null;
 
             try {
-                // Database connection details
-                String dbUrl = "jdbc:mysql://localhost:3306/1104_local_db";
-                String dbUsername = "root";
-                String dbPassword = "root";
+                String dbUrl = "jdbc:mysql://172.16.4.234:3306/test";
+                String dbUsername = "be22104";
+                String dbPassword = "bChaVGIP";
                 conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
 
-                // Check if the old password is correct
-                String checkQuery = "SELECT * FROM accounts WHERE login_name = ? AND password = ?";
+                String checkQuery = "SELECT * FROM accounts_1104 WHERE login_name = ? AND password = ?";
                 stmt = conn.prepareStatement(checkQuery);
                 stmt.setString(1, loginname);  
                 stmt.setString(2, oldPassword); 
@@ -30,7 +28,7 @@
                 rs = stmt.executeQuery();
 
                 if (rs.next()) {
-                    String updateQuery = "UPDATE accounts SET password = ? WHERE login_name = ?";
+                    String updateQuery = "UPDATE accounts_1104 SET password = ? WHERE login_name = ?";
                     stmt = conn.prepareStatement(updateQuery);
                     stmt.setString(1, newPassword);  
                     stmt.setString(2, loginname);

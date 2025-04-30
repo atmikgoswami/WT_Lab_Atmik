@@ -12,20 +12,18 @@
 
     <form action="checkAnswers.jsp" method="POST">
         <%
-            // Database connection details
-            String dbUrl = "jdbc:mysql://localhost:3306/1104_local_db";
-            String dbUsername = "root";
-            String dbPassword = "root";
+            String dbUrl = "jdbc:mysql://172.16.4.234:3306/test";
+            String dbUsername = "be22104";
+            String dbPassword = "bChaVGIP";
             Connection conn = null;
             Statement stmt = null;
             ResultSet rs = null;
 
             try {
-                // Establish connection
                 conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
                 stmt = conn.createStatement();
 
-                String query = "SELECT question_text, option_a, option_b, option_c, option_d FROM questions";
+                String query = "SELECT question_text, option_a, option_b, option_c, option_d FROM questions_1104";
                 rs = stmt.executeQuery(query);
                 while (rs.next()) {
                     String questionText = rs.getString("question_text");
@@ -47,7 +45,6 @@
             } catch (SQLException e) {
                 e.printStackTrace();
             } finally {
-                // Close resources
                 try {
                     if (rs != null) rs.close();
                     if (stmt != null) stmt.close();

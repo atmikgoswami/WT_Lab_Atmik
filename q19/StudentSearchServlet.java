@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/studentSearch")
 public class StudentSearchServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
 
-    // Load MySQL Driver Once
     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -23,7 +20,6 @@ public class StudentSearchServlet extends HttpServlet {
         }
     }
 
-    // Local Database Credentials
     private static final String DB_URL = "jdbc:mysql://172.16.4.234:3306/test";
     private static final String DB_USER = "be22104"; 
     private static final String DB_PASSWORD = "bChaVGIP"; 
@@ -39,9 +35,8 @@ public class StudentSearchServlet extends HttpServlet {
 
         if (searchString != null && !searchString.trim().isEmpty()) {
             try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
-                System.out.println("✅ Connected to Database Successfully!");
+                System.out.println("Connected to Database Successfully!");
 
-                // Query to find students by name
                 String query = "SELECT s.name, s.roll_no, d.dept_name FROM students_1104 s " +
                                "JOIN departments_1104 d ON s.dept_id = d.dept_id WHERE s.name LIKE ?";
                 

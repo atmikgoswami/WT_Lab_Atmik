@@ -11,38 +11,33 @@ public class XMLQuestionImporter {
     @SuppressWarnings("unused")
     private Connection connection;
 
-    // Constructor that takes the XML file name
     public XMLQuestionImporter(String xmlFileName) {
         this.xmlFileName = xmlFileName;
     }
 
-    // Method to establish database connection (using JDBC)
     private Connection getConnection() throws SQLException {
         try {
-            // Replace with your database connection details
-            String dbUrl = "jdbc:mysql://localhost:3306/1104_local_db";
-            String username = "root";
-            String password = "root";
+            String dbUrl = "jdbc:mysql://172.16.4.234:3306/test";
+            String username = "be22104";
+            String password = "bChaVGIP";
             return DriverManager.getConnection(dbUrl, username, password);
         } catch (SQLException e) {
             throw new SQLException("Error connecting to the database", e);
         }
     }
 
-    // Method to insert questions into the database
     public void insert() throws Exception {
         Connection connection = getConnection();
         PreparedStatement stmt = null;
 
         try {
-            // Parse the XML file
+
             File xmlFile = new File(this.xmlFileName);
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xmlFile);
             document.getDocumentElement().normalize();
 
-            // Iterate through the XML nodes
             NodeList questionsList = document.getElementsByTagName("question");
             for (int i = 0; i < questionsList.getLength(); i++) {
                 Node questionNode = questionsList.item(i);
@@ -56,8 +51,7 @@ public class XMLQuestionImporter {
                     String optionD = questionElement.getElementsByTagName("optionD").item(0).getTextContent();
                     String answer = questionElement.getElementsByTagName("answer").item(0).getTextContent();
 
-                    // Insert question into the database
-                    String query = "INSERT INTO questions (question_text, option_a, option_b, option_c, option_d, answer) VALUES (?, ?, ?, ?, ?, ?)";
+                    String query = "INSERT INTO questions_1104 (question_text, option_a, option_b, option_c, option_d, answer) VALUES (?, ?, ?, ?, ?, ?)";
                     stmt = connection.prepareStatement(query);
                     stmt.setString(1, questionText);
                     stmt.setString(2, optionA);
@@ -84,7 +78,6 @@ public class XMLQuestionImporter {
 
     public static void main(String[] args) {
         try {
-            // Example usage
             XMLQuestionImporter importer = new XMLQuestionImporter("questions.xml");
             importer.insert();
             System.out.println("Questions have been inserted into the database successfully.");

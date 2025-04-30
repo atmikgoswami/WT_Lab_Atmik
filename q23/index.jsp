@@ -11,11 +11,10 @@
             let districtDropdown = document.getElementById("district");
             let infoDiv = document.getElementById("info");
 
-            // Clear previous districts and info
             districtDropdown.innerHTML = "<option value=''>Select District</option>";
             infoDiv.innerHTML = "";
 
-            if (state === "") return; // No action if no state selected
+            if (state === "") return; 
 
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
@@ -31,10 +30,9 @@
             let district = document.getElementById("district").value;
             let infoDiv = document.getElementById("info");
 
-            // Clear previous info when changing district
             infoDiv.innerHTML = "";
 
-            if (district === "") return; // No action if no district selected
+            if (district === "") return; 
 
             let xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
@@ -59,10 +57,10 @@
             ResultSet rs = null;
 
             try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/1104_local_db", "root", "root");
+                Class.forName("com.mysql.jdbc.Driver");
+                conn = DriverManager.getConnection("jdbc:mysql://172.16.4.234:3306/test", "be22104", "bChaVGIP");
 
-                String query = "SELECT state_name FROM states";
+                String query = "SELECT state_name FROM states_1104";
                 stmt = conn.prepareStatement(query);
                 rs = stmt.executeQuery();
 

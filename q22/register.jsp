@@ -11,11 +11,10 @@
     ResultSet rs = null;
 
     try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/1104_local_db", "root", "root");
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://172.16.4.234:3306/test", "be22104", "bChaVGIP");
 
-        // Check if username OR email already exists
-        String checkQuery = "SELECT login_name, email FROM accounts WHERE login_name=? OR email=?";
+        String checkQuery = "SELECT login_name, email FROM accounts_1104 WHERE login_name=? OR email=?";
         checkStmt = conn.prepareStatement(checkQuery);
         checkStmt.setString(1, username);
         checkStmt.setString(2, email);
@@ -38,8 +37,7 @@
         } else if (emailExists) {
             out.print("<p style='color:red;'>Email already registered!</p>");
         } else {
-            // Insert only if both username and email are available
-            String insertQuery = "INSERT INTO accounts (login_name, password, full_name, email) VALUES (?, ?, ?, ?)";
+            String insertQuery = "INSERT INTO accounts_1104 (login_name, password, full_name, email) VALUES (?, ?, ?, ?)";
             insertStmt = conn.prepareStatement(insertQuery);
             insertStmt.setString(1, username);
             insertStmt.setString(2, password);

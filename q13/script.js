@@ -20,7 +20,6 @@ request.onerror = (event) => {
   console.error("Database error:", event.target.error);
 };
 
-// Dialog box and inputs
 const dialog = document.getElementById("dialog");
 const nameInput = document.getElementById("name");
 const manufacturerInput = document.getElementById("manufacturer");
@@ -29,18 +28,15 @@ const saveBtn = document.getElementById("saveBtn");
 const closeBtn = document.getElementById("closeBtn");
 const componentList = document.getElementById("componentList");
 
-// Show dialog box
 document.getElementById("addBtn").addEventListener("click", () => {
   dialog.style.display = "block";
 });
 
-// Close dialog box
 closeBtn.addEventListener("click", () => {
   dialog.style.display = "none";
   clearInputs();
 });
 
-// Add component
 saveBtn.addEventListener("click", () => {
   const name = nameInput.value;
   const manufacturer = manufacturerInput.value;
@@ -67,12 +63,11 @@ saveBtn.addEventListener("click", () => {
   };
 });
 
-// Show all components
 document.getElementById("showBtn").addEventListener("click", () => {
   const transaction = db.transaction(["components"], "readonly");
   const store = transaction.objectStore("components");
 
-  componentList.innerHTML = ""; // Clear the list
+  componentList.innerHTML = ""; 
   store.openCursor().onsuccess = (event) => {
     const cursor = event.target.result;
     if (cursor) {
@@ -87,7 +82,6 @@ document.getElementById("showBtn").addEventListener("click", () => {
   };
 });
 
-// Update component
 document.getElementById("updateBtn").addEventListener("click", () => {
   const name = prompt("Enter the name of the component to update:");
   const manufacturer = prompt("Enter the manufacturer of the component:");
@@ -119,7 +113,6 @@ document.getElementById("updateBtn").addEventListener("click", () => {
   };
 });
 
-// Delete component
 document.getElementById("deleteBtn").addEventListener("click", () => {
   const name = prompt("Enter the name of the component to delete:");
   const manufacturer = prompt("Enter the manufacturer of the component:");
@@ -141,7 +134,6 @@ document.getElementById("deleteBtn").addEventListener("click", () => {
   };
 });
 
-// Utility function to clear inputs
 function clearInputs() {
   nameInput.value = "";
   manufacturerInput.value = "";

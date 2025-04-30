@@ -1,6 +1,5 @@
 <%@ page import="java.sql.*, java.util.*" %>
 <%
-    // Check if there are any submitted answers
     boolean hasAnswers = false;
     Enumeration<String> parameterNames = request.getParameterNames();
     while (parameterNames.hasMoreElements()) {
@@ -8,7 +7,6 @@
         break;
     }
 
-    // Redirect to questions.jsp if accessed directly without form submission
     if (!hasAnswers) {
         response.sendRedirect("questions.jsp");
         return;
@@ -26,10 +24,9 @@
     <h2>Your Results</h2>
 
     <%
-        // Database connection details
-        String dbUrl = "jdbc:mysql://localhost:3306/1104_local_db";
-        String dbUsername = "root";
-        String dbPassword = "root";
+        String dbUrl = "jdbc:mysql://172.16.4.234:3306/test";
+        String dbUsername = "be22104";
+        String dbPassword = "bChaVGIP";
         Connection conn = null;
         Statement stmt = null;
         ResultSet rs = null;
@@ -38,11 +35,10 @@
         int totalQuestions = 0;
 
         try {
-            // Establish connection to the database
             conn = DriverManager.getConnection(dbUrl, dbUsername, dbPassword);
             stmt = conn.createStatement();
 
-            String query = "SELECT * FROM questions";
+            String query = "SELECT * FROM questions_1104";
             rs = stmt.executeQuery(query);
 
             while (rs.next()) {
@@ -67,7 +63,6 @@
             }
         }
 
-        // Display the results to the user
         out.println("<h3>You answered " + correctAnswersCount + " out of " + totalQuestions + " questions correctly!</h3>");
         if (correctAnswersCount == totalQuestions) {
             out.println("<p>Congratulations! You answered all questions correctly.</p>");

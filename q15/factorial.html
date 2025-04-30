@@ -16,13 +16,11 @@
         if (window.Worker) {
             const worker = new Worker('factorialWorker.js');
 
-            // Listen for messages from the worker
             worker.onmessage = function (event) {
                 const tableData = event.data;
                 displayTable(tableData);
             };
 
-            // Send the number to the worker to calculate the factorial table
             function generateFactorialTable() {
                 const numberInput = document.getElementById('numberInput');
                 const number = parseInt(numberInput.value);
@@ -35,7 +33,6 @@
                 worker.postMessage(number);
             }
 
-            // Function to display the factorial table
             function displayTable(data) {
                 const outputDiv = document.getElementById('output');
                 let table = '<table><tr><th>Number</th><th>Factorial</th></tr>';

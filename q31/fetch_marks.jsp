@@ -4,9 +4,9 @@
     String semesterId = request.getParameter("semester_id");
     String subjectId = request.getParameter("subject_id");
 
-    String url = "jdbc:mysql://localhost:3306/1104_local_db";
-    String user = "root";
-    String password = "root";
+    String url = "jdbc:mysql://172.16.4.234:3306/test";
+    String user = "be22104";
+    String password = "bChaVGIP";
 
     Connection conn = null;
     PreparedStatement stmt = null;
@@ -16,7 +16,7 @@
         Class.forName("com.mysql.cj.jdbc.Driver");
         conn = DriverManager.getConnection(url, user, password);
 
-        String query = "SELECT m.marks_obtained, s.subject_name FROM marks m JOIN subjects s ON m.subject_id = s.subject_id WHERE m.roll_no = ? AND m.semester_id = ? AND m.subject_id = ?";
+        String query = "SELECT m.marks_obtained, s.subject_name FROM marks_1104 m JOIN subjects_1104 s ON m.subject_id = s.subject_id WHERE m.roll_no = ? AND m.semester_id = ? AND m.subject_id = ?";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, rollNo);
         stmt.setInt(2, Integer.parseInt(semesterId));

@@ -6,10 +6,10 @@
     ResultSet rs = null;
 
     try {
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/1104_local_db", "root", "root");
+        Class.forName("com.mysql.jdbc.Driver");
+        conn = DriverManager.getConnection("jdbc:mysql://172.16.4.234:3306/test", "be22104", "bChaVGIP");
 
-        String query = "SELECT information FROM district_info d INNER JOIN districts di ON d.district_id = di.id WHERE di.district_name=?";
+        String query = "SELECT information FROM district_info_1104 d INNER JOIN districts_1104 di ON d.district_id = di.id WHERE di.district_name=?";
         stmt = conn.prepareStatement(query);
         stmt.setString(1, district);
         rs = stmt.executeQuery();
