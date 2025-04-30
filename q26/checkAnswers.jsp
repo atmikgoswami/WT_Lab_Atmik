@@ -72,6 +72,6 @@
     %>
 
     <br>
-    <a href="questions.jsp">Try Again</a>
+    <a href="index.jsp">Try Again</a>
 </body>
 </html>

@@ -10,7 +10,7 @@
     <p>GOOG: <span id="goog">Loading...</span></p>
 
     <script>
-        const eventSource = new EventSource("/net/WT_Lab_Atmik/q18/stocks");
+        const eventSource = new EventSource("/WT_Lab_Atmik/WT_Lab_Atmik/q18/stocks");
 
         eventSource.addEventListener("AAPL", function(event) {
             document.getElementById("aapl").innerText = "$" + event.data;
